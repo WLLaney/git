@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "YjYMainViewController.h"
+#import "YjyMainPageViewController.h"
+#import "CSDrawerControllerViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +20,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIStoryboard* storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    YjYMainViewController* leftViewController=[storyboard instantiateViewControllerWithIdentifier:@"YjYMainViewController"];
+    
+    YjyMainPageViewController* centerViewController=[leftViewController getMainPageViewController];
+    
+    CSDrawerControllerViewController * drawerViewController=[[CSDrawerControllerViewController alloc]initWithLeftViewController:leftViewController centerViewController:centerViewController];
+    
+    self.window.rootViewController=drawerViewController;
     return YES;
 }
 
